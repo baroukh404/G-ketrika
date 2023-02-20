@@ -2,38 +2,33 @@ import numpy as np
 import matplotlib.pyplot as plt
 
         
-class Newton_interpo:
+class interpolation:
     def __init__(self, Xi, Yi):
-        self.Xi = Xi
-        self.Yi = Yi
+        self.Xi = np.array(Xi)
+        self.Yi = np.array(Yi)
         self.FX = 0
         
-    
     def _fonction(self, X, Y):
         """
-        Difference diffiser de newton pour contruise le polynome de newton.
+        Difference diffiser de newton pour contruire le polynome de newton.
         """
         data = []
-        # X = self.Xi
-        # Y = self.Yi
         if len(X) > 2:
-            numerateur = self._fonction(X[1:len(X)], Y[1:len(Y)])-self._fonction(X[0:len(X)-1], Y[0:len(X)-1])
-    #         print(numerateur)
+            numerateur = self._fonction(X[1::], Y[1::]) - self._fonction(X[0:len(X)-1], Y[0:len(X)-1])
             denominateur = X[-1]-X[0]
             data.append(numerateur/denominateur)
-    #         print(data)
-            return np.array(data)
-            
+            return np.array(data)         
         else:
             if len(X) == 1:
                 data.append(Y[-1])
                 return np.array(data)
-            else:
+            else:   
                 numerateur = Y[-1]-Y[0]
                 denominateur = X[-1]-X[0]
                 data.append(numerateur/denominateur)
-                # print(123)
                 return np.array(data)
+            
+            
     def coefficient(self):
         """
         cette fonction sert a determiner tous le coefficent du polynome
@@ -42,11 +37,12 @@ class Newton_interpo:
         for i in range(len(self.Xi)):
             Ai = self._fonction(self.Xi[0:i+1], self.Yi[0:i+1])
             stockage.append(Ai.reshape(1,)[0])
-            if stockage[i] == 0:
-                pass
-            else:
-                print(f'A{i} =  {stockage[-1]}')
+            # if stockage[i] == 0:
+            #     pass
+            # else:
+            #     print(f'A{i} =  {stockage[-1]}')
         return stockage
+    
     
     def conversion(self):
         """
@@ -62,14 +58,15 @@ class Newton_interpo:
         # convertir notre variable en matrice
         stockage = np.array(stockage)
         return stockage
+    
 
     def courbe(self, polynome_newton):
         """
         Appel cette méthode pour tracer la courbe
         """
         self.FX = polynome_newton
-        plt.plot(np.linspace(Xi[0], Xi[-1], 50), self.FX)
-        plt.scatter(Xi, Yi)
+        plt.plot(np.linspace(self.Xi[0], self.Xi[-1], 50), self.FX)
+        plt.scatter(self.Xi, self.Yi)
         plt.show()
 
 
@@ -79,12 +76,11 @@ if __name__ == '__main__':
     # Xi = conversion(Xi)
     # Yi = input('Entrer les valeurs de yi dans une liste: ')
     # Yi = conversion(Yi)
-    Xi = [1, 2, 3, 4]
-    Yi = [-2, 1, 32, 139]
-    points = Newton_interpo(Xi, Yi)
+    Xi = [1, 2.5, 3, 4]
+    Yi = [81, 70, 42, 81]
+    points = interpolation(Xi, Yi)
     Ai = points.coefficient()
     
-    print(type(Ai))
     X = np.linspace(Xi[0], Xi[-1], 50)
     S = Ai[0]
     S = S + Ai[1]*(X - Xi[0])

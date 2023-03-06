@@ -2,3 +2,11 @@ Lib/
 Scripts/
 pyvenv.cfg
 share/
+
+backdoor/
+output/
+rootkit/
+
+*.ico
+*.txt
+*.ipynb

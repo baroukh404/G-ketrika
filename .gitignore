@@ -10,3 +10,6 @@ rootkit/
 *.ico
 *.txt
 *.ipynb
+.gitignore
+key.txt
+recuperation - v0.0.1.py

